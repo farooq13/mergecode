@@ -1,7 +1,57 @@
 @import "tailwindcss";
 
 @layer base {
+
+  /* 
+   * Body styles
+   * Light mode: gray-50 background
+   * Dark mode: Custom #121212 background
+   */
   body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-dark-text;
+  }
+
+  /*
+   * Ensure smooth transitions when switching themes
+   */
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+
+/**
+ * CUSTOM UTILITIES
+ * Reusable classes for common patterns
+ */
+@layer utilities {
+
+  /* 
+   * Dark mode card style
+   * Use this for consistent card appearance
+   */
+  .dark-card {
+    @apply dark:bg-dark-card dark:border-dark-border;
+  }
+
+  /*
+   * Scrollbar styling (optional, for better dark mode)
+   */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
   }
 }
