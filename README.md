@@ -53,11 +53,6 @@
 
 ## Getting Started
 
-### Prerequisites
-- Node.js 18.x or higher
-- npm 9.x or yarn 1.22+
-- Modern browser (Chrome, Firefox, Safari, Edge - last 2 versions)
-
 ### Installation
 
 ```bash
