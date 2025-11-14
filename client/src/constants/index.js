@@ -5,3 +5,5 @@ export const navLinks = [
         path: "/dashboard"
     }
 ]
+
+export const logo = '../../assets/mergecode-logo.png'

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Dashboard from "./Dashboard";
 import { NavLink } from 'react-router-dom';
 import { navLinks } from "../constants";
-import logo from '../assets/logo.png';
+import logo from '../assets/mergecode-logo.png';
 
 export default function Nav() {
     const [active, setActive] = useState("");
@@ -26,7 +25,7 @@ export default function Nav() {
                 key={link.id}
                 className={`${
                 active === link.title
-                    ? "text-black"
+                    ? "text-white"
                     : "text-gray-400"
                 } hover:text-gray-500 text[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(link.title)}>
