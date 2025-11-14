@@ -80,7 +80,7 @@ export default function Modal({
             >
             {/* Modal Header */}
             <div className={`${isDark ? 'flex items-center justity-between p-6 border-b border-[#2a2a2a]' : 'border-gray-200 flex items-center justity-between p-6 border-b' }`}>
-              <h2 className={`${isDark ? 'text-xl font-semibold text-white' : 'text-xl font-semibold text-gray-900' }`}>
+              <h2 className={`${isDark ? 'text-xl font-semibold text-white' : 'text-xl font-semibold text-[#121212]' }`}>
                 {title}
               </h2>
 
@@ -88,7 +88,12 @@ export default function Modal({
               {showCloseButton && (
                 <button
                   onClick={onClose}
-                  className='p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hove:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
+                  className={`
+                    ${isDark 
+                      ? 'p-1 rounded-lg hover:cursor-pointer hover:text-gray-600 text-gray-500 hove:text-gray-300 hover:bg-gray-700 transition-colors' 
+                      : 'text-gray-600 hover:cursor-pointer hover:bg-gray-300 p-1 rounded-lg  hover:text-gray-600 transition-colors' 
+
+                    }`}
                   aria-label="Close modal"
                 >
                   <X size={20} />

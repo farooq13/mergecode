@@ -121,7 +121,7 @@ export default function Dashboard() {
         <div className="mt-8">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className={`${isDark ? 'text-2xl font-bold text-gray-900 text-white' : 'text-2xl font-bold text-gray-900' }`}>
               Recent Submissions
             </h2>
             <button className="text-sm text-primary-600 dark:text-primary-400 hover:cursor-pointer hover:text-primary-700 dark:hover:text-primary-300 font-medium">

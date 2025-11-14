@@ -3,9 +3,11 @@ import Modal from '../ui/Modal';
 import FormInput from '../ui/FormInput';
 import Button  from '../ui/Button';
 import { Upload, Code, } from 'lucide-react';
+import { useTheme } from "../../context/ThemeContext";
 
 
 export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
+  const { isDark } = useTheme();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -110,11 +112,10 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
 
       // Close modal
       onClose();
-      console.log('Review submitted successfully');
+    
       
     } catch (error) {
       setErrors({ submit: 'Failed to submit review. Please try again.' });
-      console.log('Error submitting review', error);
     } finally {
       // Always reset loading state
       setIsSubmitting(false);
@@ -164,6 +165,7 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
           onChange={(e) => handleChange('title', e.target.value)}
           placeholder="e.g, Refactor authentication middleware"
           error={errors.title}
+          labelClassName={isDark ? 'text-gray-300' : 'text-[#121212]'}
           required
         />
 
@@ -176,6 +178,7 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
           placeholder="Describe what this code does and what you'd like reviewed..."
           rows={3}
           error={errors.description}
+          labelClassName={isDark ? 'text-gray-300' : 'text-[#121212]'}
           required
         />
 
@@ -187,19 +190,22 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
           onChange={(e) => handleChange('language', e.target.value)}
           options={languageOptions}
           error={errors.language}
+          labelClassName={isDark ? 'text-gray-300' : 'text-[#121212] bg-gray-50'}
           required
         />
 
         {/* Code Input With File Upload Option */}
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className={`${isDark ? 'block text-sm font-medium text-gray-50 text-gray-300' : 'block text-sm font-medium text-[#121212]'}`}>
               Code <span className="text-red-500">*</span>
             </label>
 
             {/* File Upload Button */}
-            <label className="cursor-pointer text-sm text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
-              <Upload size={16} />
+            <label className={`${isDark 
+              ? 'flex items-center gap-1 cursor-pointer text-sm text-gray-50 hover:underline text-nowrap' 
+              : 'flex items-center gap-1 text-[#121212] hover:underline cursor-pointer text-sm text-nowrap'}`}>
+              <Upload size={60} />
               Upload File 
               <FormInput 
                 type="file"
@@ -216,9 +222,10 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
             placeholder="Paste your code here or upload a file..."
             rows={12}
             className={`
-              w-full px-3 py-2 rounded-lg font-mono text-sm bg-gray-50 dark:bg-[#121212] border border-gray-300
-              dark:border-[#2a2a2a] text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500
-              focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+              ${isDark 
+                ? ' w-full px-3 py-2 rounded-lg font-mono text-sm bg-[#121212] border border-[#2a2a2a] text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent' 
+                : 'text-gray-900 border border-gray-300 bg-gray-50 placeholder:text-gray-400 w-full px-3 py-2 rounded-lg font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent'}
+             
               ${errors.code ? 'border-red-500 focus:ring-red-500' : ''} 
             `}
           />
@@ -235,6 +242,8 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
           value={formData.tags}
           onChange={(e) => handleChange('tags', e.target.value)}
           placeholder="e.g, bug-fix, performance, security (comma-separated)"
+          labelClassName={isDark ? 'text-gray-300' : 'text-[#121212]'}
+          className={isDark ? '' : 'border-1 border-gray-300 bg-gray-50 text-[#121212]'}
         />
 
         {/* Submit Error */}
@@ -247,12 +256,13 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
         )}
 
         {/* Form Actions */}
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-[#2a2a2a]">
+        <div className={`${isDark ? 'flex justify-end gap-3 pt-4 border-t border-[#2a2a2a]' : 'flex justify-end gap-3 pt-4 border-t border-gray-200' }`}>
           <Button 
             type="button"
             variant="ghost"
             onClick={handleCancel}
             disabled={isSubmitting}
+            className={!isDark ? 'text-[#121212] hover:bg-gray-900 border border-gray-500' : ''}
           >
             Cancel
           </Button>
@@ -261,6 +271,7 @@ export default function SubmissionForm({ isOpen, onClose, onSubmit }) {
             variant="primary"
             loading={isSubmitting}
             icon={Code}
+            className={!isDark ? 'bg-[#121212] hover:bg-gray-700 text-white' : ''}
           >
             { isSubmitting ? 'Submitting...' : 'Submit Review' }
           </Button>
