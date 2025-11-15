@@ -5,6 +5,8 @@ import { useTheme } from '../../context/ThemeContext';
 
 export default function Header() {
   const { isDark } = useTheme();
+ 
+
   return (
     <header className={`sticky top-0 z-50 border-b shadow-sm ${isDark ? 'bg-[#121212] border-[#2a2a2a]' : 'bg-white border-gray-200'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +26,7 @@ export default function Header() {
 
           {/* Center: Navigation links */}
           <nav className='hidden md:flex items-center gap-6'>
-            <a href="#" className={`${!isDark ? 'text-[#121212]' : 'text-md font-medium text-gray-700 hover:text-gray-500 dark:hover:text-slate-50 dark:text-slate-300 transition-colors'}`}>
+            <a href="/" className={`${!isDark ? 'text-[#121212] hover:cursor-pointer' : 'text-md font-medium text-gray-700 hover:text-gray-500 hover:cursor-pointer dark:hover:text-slate-50 dark:text-slate-300 transition-colors'}`}>
                 Dashboard
             </a>
             <a 
