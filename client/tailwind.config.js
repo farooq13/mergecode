@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",  // Look for .jsx files
+    "./src/**/*.{js,jsx}",  
   ],
   darkMode: 'class',
   theme: {

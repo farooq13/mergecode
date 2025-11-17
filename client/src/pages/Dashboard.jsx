@@ -1,5 +1,6 @@
 import { FileCode, CheckCircle, Clock, Users, Plus } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import StatCard from '../components/ui/StatCard';
 import ReviewCard from '../components/features/ReviewCard';
@@ -10,33 +11,8 @@ import Button from '../components/ui/Button';
 export default function Dashboard() {
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
   const { isDark } = useTheme();
+  const navigate = useNavigate();
 
-  // Sample Data
-  const stats = [
-    {
-      title: 'Total Reviews',
-      value: 24,
-      icon: FileCode,
-      trend: { value: 12, isPositive: true },
-    },
-    {
-      title: 'Approved',
-      value: 18,
-      icon: CheckCircle,
-      trend: { value: 8, isPositive: true },
-    },
-    {
-      title: 'Pending',
-      value: 6,
-      icon: Clock,
-      trend: { value: 3, isPositive: false },
-    },
-    {
-      title: 'Team Members',
-      value: 12,
-      icon: Users,
-    },
-  ];
 
   const [reviews, setReviews] = useState([
     {
@@ -77,9 +53,36 @@ export default function Dashboard() {
     },
   ]);
 
+    // Sample Data
+  const stats = [
+    {
+      title: 'Total Reviews',
+      value: reviews.length,
+      icon: FileCode,
+      trend: { value: 12, isPositive: true },
+    },
+    {
+      title: 'Approved',
+      value: 18,
+      icon: CheckCircle,
+      trend: { value: 8, isPositive: true },
+    },
+    {
+      title: 'Pending',
+      value: 6,
+      icon: Clock,
+      trend: { value: 3, isPositive: false },
+    },
+    {
+      title: 'Team Members',
+      value: 12,
+      icon: Users,
+    },
+  ];
+
   const handleNewReview = (newReview) => {
     setReviews(prev => [newReview, ...prev]);
-    console.log('New review added:', newReview);
+    alert('New review added: ', newReview);
   }
 
   const recentReviews = reviews.slice(0,4); // Show only first 4 reviews
@@ -130,12 +133,12 @@ export default function Dashboard() {
           </div>
 
           {/* Reviews Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 hover:cursor-pointer">
             {recentReviews.map((review) => (
               <ReviewCard
                 key={review.id}
                 review={review}
-                onClick={() => console.log('Clicked review:', review.id)}
+                onClick={() => navigate(`/review/${review.id}`)}
               />
             ))}
           </div>
