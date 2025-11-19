@@ -43,7 +43,6 @@ export function Settings() {
   // SAVE SETTINGS
   const handleSave = () => {
     // In real app, would save to API
-    alert('Saving settings:', settings);
     success('Settings saved successfully!');
   };
 
@@ -138,7 +137,7 @@ export function Settings() {
                     rows={4}
                   />
 
-                  <Button variant={`${isDark ? 'primary' : 'secondary'}`} icon={Save} onClick={handleSave} className={`${isDark ? 'border border-gray-600 hover:border-gray-200' : 'border border-gray-300'}`}>
+                  <Button variant='primary' icon={Save} onClick={handleSave}>
                     Save Changes
                   </Button>
                 </div>
@@ -219,7 +218,7 @@ export function Settings() {
                     </label>
                   </div>
 
-                  <Button variant={`${isDark ? 'primary' : 'secondary'}`} icon={Save} onClick={handleSave} className={`${isDark ? 'border border-gray-600 hover:border-gray-200' : ''}`}>
+                  <Button variant='primary' icon={Save} onClick={handleSave}>
                     Save Changes
                   </Button>
                 </div>
@@ -290,7 +289,7 @@ export function Settings() {
                     ]}
                   />
 
-                  <Button variant={`${isDark ? 'primary' : 'secondary'}`} icon={Save} onClick={handleSave} className={`${isDark ? 'border border-gray-600 hover:border-gray-200' : ''}`}>
+                  <Button variant='primary' icon={Save} onClick={handleSave}>
                     Save Changes
                   </Button>
                 </div>
@@ -326,7 +325,7 @@ export function Settings() {
                     placeholder="Confirm new password"
                   />
 
-                  <Button variant={`${isDark ? 'primary' : 'secondary'}`} icon={Save} className={`${isDark ? 'border border-gray-600 hover:border-gray-200' : ''}`}>
+                  <Button variant='primary' icon={Save}>
                     Update Password
                   </Button>
 
