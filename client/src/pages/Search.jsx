@@ -4,6 +4,7 @@ import ReviewCard  from '../components/features/ReviewCard';
 import FormInput  from '../components/ui/FormInput';
 import  Button  from '../components/ui/Button';
 import { useTheme } from '../context/ThemeContext';
+import { getStoredReviews, saveReviewsToStorage } from '../utils/reviewStorage';
 
 
 export function Search() {
@@ -16,12 +17,12 @@ export function Search() {
   const [showFilters, setShowFilters] = useState(false);
   const { isDark } = useTheme();
 
-  //  SAMPLE REVIEWS DATA
-  const allReviews = [
+  // SAMPLE REVIEWS DATA (fallback)
+  const defaultReviews = [
     {
       id: '1',
       title: 'Refactor authentication middleware',
-      author: 'Sarah Chen',
+      author: 'Faruk Idris',
       status: 'pending',
       language: 'TypeScript',
       createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
@@ -30,7 +31,7 @@ export function Search() {
     {
       id: '2',
       title: 'Add user profile API endpoints',
-      author: 'Mike Johnson',
+      author: 'Adam Muhammad',
       status: 'approved',
       language: 'Python',
       createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
@@ -48,7 +49,7 @@ export function Search() {
     {
       id: '4',
       title: 'Optimize database queries for dashboard',
-      author: 'David Kim',
+      author: 'Kabeer Ahmad',
       status: 'merged',
       language: 'Go',
       createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
@@ -73,6 +74,17 @@ export function Search() {
       commentCount: 2,
     },
   ];
+
+  // Initialize allReviews from localStorage if present, otherwise use defaults and persist them
+  const [allReviews, setAllReviews] = useState(() => {
+    const stored = getStoredReviews();
+    if (!stored || stored.length === 0) {
+      // Persist defaults for future loads
+      saveReviewsToStorage(defaultReviews);
+      return defaultReviews;
+    }
+    return stored;
+  });
 
   /* 
      FILTER REVIEWS
@@ -151,7 +163,7 @@ export function Search() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by title or author..."
-              className={`w-full pl-10 pr-4 py-3 rounded-lg border placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 ${isDark ? 'border-[#2a2a2a] text-white bg-[#1e1e1e]' : 'text-gray-900 bg-white border-gray-300'}`}
+              className={`w-full pl-10 pr-4 py-3 rounded-lg border-2 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 ${isDark ? 'border-gray-50 text-white bg-[#1e1e1e]' : 'text-gray-900 bg-white border-gray-900'}`}
             />
             {searchQuery && (
               <button

@@ -7,14 +7,57 @@ import ReviewCard from '../components/features/ReviewCard';
 import SubmissionForm from '../components/features/SubmissionForm';
 import Button from '../components/ui/Button';
 
+// Helper functions for localStorage (same as Reviews page)
+const STORAGE_KEY = 'mergecode_reviews';
+
+const getStoredReviews = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      // Convert createdAt strings back to Date objects
+      return parsed.map(review => ({
+        ...review,
+        createdAt: new Date(review.createdAt)
+      }));
+    }
+  } catch (error) {
+    try {
+      const { notify } = require('../utils/notify');
+      notify('error', 'Failed to read reviews from localStorage.');
+    } catch (e) {
+      
+    }
+  }
+  return [];
+};
+
+const saveReviewsToStorage = (reviews) => {
+  try {
+    // Convert Date objects to strings before storing
+    const serialized = reviews.map(review => ({
+      ...review,
+      createdAt: review.createdAt.toISOString()
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(serialized));
+  } catch (error) {
+    try {
+      const { notify } = require('../utils/notify');
+      notify('error', 'Failed to save reviews to localStorage.');
+    } catch (e) {
+      
+    }
+  }
+};
+
 
 export default function Dashboard() {
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
-
-  const [reviews, setReviews] = useState([
+  // Default reviews for first-time load
+  const defaultReviews = [
     {
       id: '1',
       title: 'Refactor authentication middleware',
@@ -51,7 +94,18 @@ export default function Dashboard() {
       createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), 
       commentCount: 5,
     },
-  ]);
+  ];
+
+  // Load reviews from localStorage or use defaults
+  const [reviews, setReviews] = useState(() => {
+    const stored = getStoredReviews();
+    // If localStorage is empty, use default reviews and save them
+    if (stored.length === 0) {
+      saveReviewsToStorage(defaultReviews);
+      return defaultReviews;
+    }
+    return stored;
+  });
 
     // Sample Data
   const stats = [
@@ -81,8 +135,10 @@ export default function Dashboard() {
   ];
 
   const handleNewReview = (newReview) => {
-    setReviews(prev => [newReview, ...prev]);
-    alert('New review added: ', newReview);
+    const updatedReviews = [newReview, ...reviews];
+    setReviews(updatedReviews);
+    // Persist to localStorage
+    saveReviewsToStorage(updatedReviews);
   }
 
   const recentReviews = reviews.slice(0,4); // Show only first 4 reviews
@@ -124,7 +180,7 @@ export default function Dashboard() {
         <div className="mt-8">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className={`${isDark ? 'text-2xl font-bold text-gray-900 text-white' : 'text-2xl font-bold text-gray-900' }`}>
+            <h2 className={`${isDark ? 'text-2xl font-bold text-white' : 'text-2xl font-bold text-gray-900' }`}>
               Recent Submissions
             </h2>
             <button className="text-sm text-primary-600 dark:text-primary-400 hover:cursor-pointer hover:text-primary-700 dark:hover:text-primary-300 font-medium">

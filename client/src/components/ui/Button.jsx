@@ -1,3 +1,4 @@
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Button({
   children,
@@ -11,13 +12,15 @@ export default function Button({
   ...props
 }) {
 
+  const { isDark } = useTheme();
+
   // Different color scheme for different button types
     const variantStyles = {
-    primary: 'bg-primary-600 text-white hover:cursor-pointer hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600',
-    secondary: 'bg-gray-600 text-white hover:cursor-pointer hover:bg-gray-700 dark:bg-gray-500 dark:hover:bg-gray-600',
-    outline: 'border-2 border-primary-600 text-primary-600 hover:cursor-pointer hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-900/20',
-    ghost: 'text-gray-700 hover:cursor-pointer hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800',
-    danger: 'bg-red-600 text-white hover:cursor-pointer hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600',
+    primary: `hover:cursor-pointer ${isDark ? 'bg-[#3b82f6] hover:bg-[#2563eb]' : 'bg-[#2563eb] text-white hover:bg-[#1d4ed8]'}`,
+    secondary: `hover:cursor-pointer ${isDark ? 'bg-gray-500 hover:bg-gray-600' : 'bg-gray-600 text-white hover:bg-gray-700'}`,
+    outline: `border-2 hover:cursor-pointer ${isDark ? 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#1d4ed8]/20' : 'border-[#2563eb] text-[#2563eb] hover:bg-[#eff6ff]'}`,
+    ghost: `hover:cursor-pointer ${isDark ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'}`,
+    danger: `hover:cursor-pointer text-white ${isDark ? 'bg-red-500 hover:bg-red-600' : 'bg-red-600 hover:bg-red-700'}`,
   };
 
   // Different padding and font sizes

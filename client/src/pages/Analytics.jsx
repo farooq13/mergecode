@@ -149,7 +149,7 @@ export default function Analytics() {
                 <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Approved</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded ${isDark ? 'bg-[#1d4ed8]/40' : 'bg-[#3b82f6]'}`}></div>
+                <div className={`w-3 h-3 rounded ${isDark ? 'bg-[#1d4ed8]' : 'bg-[#3b82f6]'}`}></div>
                 <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Total</span>
               </div>
             </div>

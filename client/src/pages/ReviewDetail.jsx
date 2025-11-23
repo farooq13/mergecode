@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, XCircle, MessageSquare, Clock, User, Code } from 'lucide-react';
 import Button from "../components/ui/Button";
 import StatusBadge from "../components/ui/StatusBadge";
 import { useTheme } from "../context/ThemeContext";
+import  CommentsList  from "../components/features/CommentsList";
+import { getStoredReviews } from '../utils/reviewStorage';
 
 
 export  default function ReviewDetail() {
@@ -11,59 +13,18 @@ export  default function ReviewDetail() {
   const navigate = useNavigate();
   const { isDark } = useTheme();
 
-  // Mock Review Data
-  const [review] = useState({
-    id: id,
-    title: 'Refactor authentication middleware',
-    author: 'Sarah Chen',
-    status: 'pending',
-    language: 'javascript',
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-    commentCount: 3,
-    description: `This PR refactors the authentication middleware to improve code readability and maintainability. 
-        Key changes:
-        - Extract token validation into separate function
-        - Add better error messages
-        - Improve type safety
-        - Add unit tests
+  const [review, setReview] = useState(undefined);
 
-        Looking for feedback on the overall structure and any edge cases I might have missed.`,
-            code: `// middleware/auth.js
-
-        const jwt = require('jsonwebtoken');
-
-        /**
-         * Authentication middleware
-         * Validates JWT token from request header
-         */
-        const authenticate = async (req, res, next) => {
-          try {
-            // Get token from header
-            const token = req.headers.authorization?.split(' ')[1];
-            
-            if (!token) {
-              return res.status(401).json({ 
-                error: 'Authentication required' 
-              });
-            }
-
-            // Verify token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            
-            // Attach user to request
-            req.user = decoded;
-            
-            next();
-          } catch (error) {
-            return res.status(401).json({ 
-              error: 'Invalid or expired token' 
-            });
-          }
-        };
-
-        module.exports = { authenticate };`,
-      tags: ['security', 'refactor', 'middleware'],
-  });
+  useEffect(() => {
+    if (!id) {
+      setReview(null);
+      return;
+    }
+    const stored = getStoredReviews();
+    const found = stored.find((r) => String(r.id) === String(id));
+    // set to found object or null if not present
+    setReview(found ?? null);
+  }, [id]);
 
   const statusDisplayText = {
     draft: 'Draft',
@@ -97,6 +58,38 @@ export  default function ReviewDetail() {
   const handleRequestChanges = () => {
     alert('Changes requested!');
   };
+
+  // Loading state: undefined = still checking storage
+  if (review === undefined) {
+    return (
+      <div className={`min-h-screen ${isDark ? 'bg-[#121212]' : 'bg-gray-50'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Loading review...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Not found state: explicitly show empty message when review missing
+  if (review === null) {
+    return (
+      <div className={`min-h-screen ${isDark ? 'bg-[#121212]' : 'bg-gray-50'}`}>
+        <div className={`${isDark ? 'bg-[#1e1e1e] border-b border-[#2a2a2a]' : 'bg-white border-b border-gray-200'}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <button
+              onClick={() => navigate(-1)}
+              className={`${isDark ? 'flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors' : 'flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors'}`}
+            >
+              <ArrowLeft size={20} />
+              <span>Back</span>
+            </button>
+            <h1 className={`${isDark ? 'text-3xl font-bold text-white' : 'text-3xl font-bold text-gray-900'}`}>Review not found</h1>
+            <p className={`${isDark ? 'text-gray-400 mt-2' : 'text-gray-600 mt-2'}`}>The review you requested doesn't exist or may have been removed.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`${isDark ? 'min-h-screen bg[#121212] pb-12' : 'min-h-screen bg-gray-50 pb-12'}`}>
@@ -199,7 +192,7 @@ export  default function ReviewDetail() {
                 </h2>
               </div>
               <p className={`${isDark ? 'text-gray-400 text-center py-8' : 'text-gray-500 text-center py-8'}`}>
-                Comment coming soon!
+                <CommentsList />
               </p>
             </div>
           </div>
@@ -216,7 +209,7 @@ export  default function ReviewDetail() {
                   variant="primary"
                   icon={CheckCircle}
                   onClick={handleApprove}
-                  className={`${isDark ? 'w-full' : 'w-full bg-gray-800 hover:bg-gray-500 transition-colors'}`}
+                  className="w-full"
                 >
                   Approve
                 </Button>
@@ -225,7 +218,7 @@ export  default function ReviewDetail() {
                   variant="outline"
                   icon={XCircle}
                   onClick={handleRequestChanges}
-                  className={`${isDark ? 'w-full' : 'w-full hover:bg-gray-900 hover:text-white transition-colors'}`}
+                  className="w-full"
                 >
                   Request Changes
                 </Button>
@@ -233,7 +226,7 @@ export  default function ReviewDetail() {
                 <Button
                   variant="ghost"
                   icon={MessageSquare}
-                  className={`${isDark ? 'w-full' : 'w-full border-2 border-gray-900'}`}
+                  className='w-full'
                 >
                   Add Comment
                 </Button>
