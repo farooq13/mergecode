@@ -14,12 +14,11 @@ export default function FormInput({
   labelClassName = '',
   ...props
 }) {
-  // Import useTheme hook to apply theme-aware styles
   const { isDark } = useTheme();
 
   
 
-  // Common styles for all input types - now theme-aware
+  // Common styles for all input types
   const baseStyles = `
     w-full px-3 py-2 rounded-lg transition-colors
     ${isDark ? 'bg-[#121212] text-white dark:border-[#2a2a2a]' : 'bg-white text-[#121212] border border-gray-300'}

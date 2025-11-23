@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",  // Look for .jsx files
+    "./src/**/*.{js,jsx}",  
   ],
   darkMode: 'class',
   theme: {
@@ -24,7 +24,7 @@ export default {
           card: '#1e1e1e',      // Card/panel background
           border: '#2a2a2a',    // Border color
           text: '#e5e5e5',      // Primary text
-          muted: '#a0a0a0',     // Muted/secondary text
+          muted: '#a0a0a0', 
         },
     },
   },
