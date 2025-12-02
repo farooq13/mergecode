@@ -12,6 +12,7 @@ import { ToastProvider } from './components/ui/Toast';
 import FullPageLoader from './components/ui/FullPageLoader';
 import { useLoading } from './context/LoadingContext';
 import NotificationBridge from './components/ui/NotificationBridge';
+import LandingPage from './pages/LandingPage';
 
 
 function AppContent() {
@@ -38,7 +39,8 @@ function AppContent() {
       <NotificationBridge />
       {/* Route */}
       <Routes>
-        <Route path='/' element={<Dashboard/>} />
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/reviews' element={<Reviews />} />
         <Route path='/review/:id' element={<ReviewDetail />} />
         <Route path='/analytics' element={<Analytics />} />

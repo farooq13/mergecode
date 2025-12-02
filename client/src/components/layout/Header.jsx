@@ -1,14 +1,28 @@
-import { Code2, SearchIcon } from 'lucide-react';
+import { Code2, SearchIcon, BarChart3 } from 'lucide-react';
 import ThemeToggle from '../ui/ThemeToggle';
 import { useTheme } from '../../context/ThemeContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLoading } from '../../context/LoadingContext';
 
 
 export default function Header() {
   const { isDark } = useTheme();
   const { showLoader } = useLoading();
- 
+ const location = useLocation();
+
+ const isActive = (path) => {
+  if (path === '/') {
+    return location.pathname === '/';
+  }
+  return location.pathname.startsWith(path);
+ };
+
+  const navLinks = [
+    { path: '/dashboard', label: 'Dashboard', icon: null },
+    { path: '/analytics', label: 'Analytics', icon: null },
+     { path: '/reviews', label: 'Reviews', icon: null },
+    { path: '/search', label: 'Search', icon: null },
+  ];
 
   return (
     <header className={`sticky top-0 z-50 border-b shadow-sm ${isDark ? 'bg-[#121212] border-[#2a2a2a]' : 'bg-white border-gray-200'}`}>
@@ -30,36 +44,27 @@ export default function Header() {
           </div>
 
           {/* Center: Navigation links */}
-          <nav className='hidden md:flex items-center gap-6'>
-            <Link to="/" onClick={() => showLoader()} className={`${!isDark ? 'text-[#121212] hover:cursor-pointer' : 'text-md font-medium text-gray-700 hover:text-gray-500 hover:cursor-pointer dark:hover:text-slate-50 dark:text-slate-300 transition-colors'}`}>
-                Dashboard
-            </Link>
-            <Link
-              to="/reviews"
-              onClick={() => showLoader()}
-              className={`${!isDark ? 'text-[#121212]' : 'text-md font-medium text-gray-700 hover:text-gray-500 dark:hover:text-slate-50 dark:text-slate-300 transition-colors'}`}
-            >
-              Reviews
-            </Link>
-            <Link
-              to="/analytics"
-              onClick={() => showLoader()}
-              className={`${!isDark ? 'text-[#121212]' : 'text-md font-medium text-gray-700 hover:text-gray-500 dark:hover:text-slate-50 dark:text-slate-300 transition-colors'}`}
-            >
-              Analytics
-            </Link>
-            <Link
-              to="/search"
-              onClick={() => showLoader()}
-              className={`text-md font-medium transition-colors ${!isDark ? 'hover:text-gray-500 text-gray-700' : 'dark:hover:text-slate-50text-slate-300'}`}
-            >
-              <div className={`p-2 rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`} >
-                <SearchIcon size={24} />
-              </div>
-            </Link>
-           
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`
+                    px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2
+                    ${isActive(link.path)
+                      ? `${isDark ? 'dark:text-gray-100  bg-gray-800/90' : 'text-gray-900 bg-gray-800/20'}`
+                      : `${isDark ? 'hover:bg-gray-700/40 text-gray-300' : 'hover:bg-gray-600/40 text-gray-700'}`
+                    }
+                  `}
+                >
+                  {Icon && <Icon size={16} />}
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
-
           
 
           {/* Right Side: Theme Toggle & User Menu */}

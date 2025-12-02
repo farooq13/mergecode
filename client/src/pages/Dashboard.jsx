@@ -183,7 +183,7 @@ export default function Dashboard() {
             <h2 className={`${isDark ? 'text-2xl font-bold text-white' : 'text-2xl font-bold text-gray-900' }`}>
               Recent Submissions
             </h2>
-            <button className="text-sm text-primary-600 dark:text-primary-400 hover:cursor-pointer hover:text-primary-700 dark:hover:text-primary-300 font-medium">
+            <button className={`text-sm hover:cursor-pointer font-medium ${isDark ? 'hover:text-[#3b82f6] text-[#5f99f5]' : 'text-[#2563eb] hover:text-[#1d4ed8]'}`}>
               View All →
             </button>
           </div>
