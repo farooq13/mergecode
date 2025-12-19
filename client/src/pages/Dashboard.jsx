@@ -7,7 +7,7 @@ import ReviewCard from '../components/features/ReviewCard';
 import SubmissionForm from '../components/features/SubmissionForm';
 import Button from '../components/ui/Button';
 
-// Helper functions for localStorage (same as Reviews page)
+// Helper functions for localStorage
 const STORAGE_KEY = 'mergecode_reviews';
 
 const getStoredReviews = () => {

@@ -13,6 +13,8 @@ import FullPageLoader from './components/ui/FullPageLoader';
 import { useLoading } from './context/LoadingContext';
 import NotificationBridge from './components/ui/NotificationBridge';
 import LandingPage from './pages/LandingPage';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 
 function AppContent() {
@@ -46,6 +48,8 @@ function AppContent() {
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/search' element={<Search />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='signup' element={<Signup />} />
+        <Route path='login' element={<Login />} />
       </Routes>
       {isLoading && <FullPageLoader />}
     </div>

@@ -18,6 +18,7 @@ export default function Header() {
  };
 
   const navLinks = [
+    { path: '/', label: 'Home', icon: null },
     { path: '/dashboard', label: 'Dashboard', icon: null },
     { path: '/analytics', label: 'Analytics', icon: null },
      { path: '/reviews', label: 'Reviews', icon: null },
