@@ -1,18 +1,17 @@
-
+import { useTheme } from "../../context/ThemeContext";
 
 export default function StatusBadge({ variant, children }) {
-/**
-   * STYLE MAPPING
-   * Maps each variant to its Tailwind CSS classes
-   * This is cleaner than having multiple if/else statements
+  const { isDark } = useTheme();
+/*
+    Maps each variant to its Tailwind CSS classes
  */
   const variantStyles = {
-    draft: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
-    pending: 'bg-yellow-100 text-yellow-800 dark:bg-[#FFC50F] dark:text-yellow-900',
-    approved: 'bg-green-100 text-green-800 dark:bg-[#043915] dark:text-green-500',
-    'changes-requested': 'bg-orange-100 text-orange-800 dark:bg-[#FF6C0C] dark:text-orange-900',
-    merged: 'bg-purple-100 text-purple-800 dark:bg-[#540863] dark:text-purple-300',
-    archived: 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-200',
+    draft: `font-bold ${isDark ? 'text-gray-400' : 'text-gray-800'}`,
+    pending: `font-bold ${isDark ? 'text-yellow-500' : 'text-yellow-600'}`,
+    approved: `font-bold ${isDark ? 'text-green-500' : 'text-green-700'}`,
+    'changes-requested': `font-bold ${isDark ? 'text-orange-500' : 'text-orange-500'}`,
+    merged: `font-bold ${isDark ? 'text-purple-300' : 'text-purple-800'}`,
+    archived: `font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'}`,
   };
 
   /**

@@ -185,7 +185,7 @@ export  default function ReviewDetail() {
 
             {/* Comment Section */}
             <div className={`${isDark ? 'bg-[#1e1e1e] rounded-lg border border-[#2a2a2a] p-6' : 'bg-white rounded-lg border border-gray-200 p-6'}`}>
-              <div className="flex items-center gap-2 mb-4">
+              <div className={`flex items-center gap-2 mb-4 ${isDark ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
                 <MessageSquare size={20} className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`} />
                 <h2 className={`${isDark ? 'text-xl font-semibold text-white' : 'text-xl font-semibold text-gray-900'}`}>
                   Comments ({review.commentCount})
