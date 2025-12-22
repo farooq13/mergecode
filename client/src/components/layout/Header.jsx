@@ -71,8 +71,8 @@ export default function Header() {
           {/* Right Side: Theme Toggle & User Menu */}
           <div className="flex items-center gap-4">
              <div className={`p-2 rounded-full md:hidden ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`} >
-                <Link to="/search" onClick={() => showLoader()} className={`text-md font-medium transition-colors ${!isDark ? 'hover:text-slate-50 text-slate-300' : 'text-gray-700 hover:text-gray-500'}`}>
-                  <SearchIcon size={24} />
+                <Link to="/search" onClick={() => showLoader()} className={`text-md font-medium transition-colors ${!isDark ? 'hover:text-slate-50 text-white' : 'text-gray-700 hover:text-gray-500'}`}>
+                  <SearchIcon size={24} className={`${isDark ? 'text-white' : ''}`} />
                 </Link>
              </div>
             {/* Theme Toggle Button */}

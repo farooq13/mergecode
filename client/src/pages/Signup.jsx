@@ -186,25 +186,7 @@ export default function Signup() {
     <div className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${isDark ? 'bg-[#121212]'  : 'bg-gray-50'}`}>
       <div className="w-full max-w-4xl">
         
-        {/* Back to Home */}
-        <Link
-          to="/"
-          className={`inline-flex items-center gap-2 mb-8 transition-colors ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Home</span>
-        </Link>
-
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className={`text-4xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Create Your Account
-          </h1>
-          <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Join 10,000+ developers improving their code
-          </p>
-        </div>
-
+        
         {/* Multi-Step Form */}
         <FormStep steps={steps} currentStep={currentStep}>
           
@@ -275,7 +257,7 @@ export default function Signup() {
                       focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
                       border ${errors.password ? 'border-red-500' : `${isDark ? 'border-[#2a2a2a]' : 'border-gray-300'}`}
                       ${isDark 
-                      ? 'text-white placeholder:text-gray-500 bg-[#1e1e1e]'
+                      ? 'text-white placeholder:text-gray-500 bg-[#121212]'
                       : 'text-gray-900 placeholder:text-gray-400 bg-white'
                       }
                     `}

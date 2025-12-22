@@ -4,7 +4,7 @@ import { useTheme } from "../../context/ThemeContext";
 export default function FormStep({ steps, currentStep, children }) {
   const { isDark } = useTheme();
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-1/2 mx-auto">
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-between">

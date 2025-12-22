@@ -1,4 +1,4 @@
-import { FileCode, CheckCircle, Clock, Users, Plus } from 'lucide-react';
+import { FileCode, CheckCircle, Clock, Users, Plus, Link } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -184,7 +184,7 @@ export default function Dashboard() {
               Recent Submissions
             </h2>
             <button className={`text-sm hover:cursor-pointer font-medium ${isDark ? 'hover:text-[#3b82f6] text-[#5f99f5]' : 'text-[#2563eb] hover:text-[#1d4ed8]'}`}>
-              View All →
+              <a href="/reviews">View All →</a>
             </button>
           </div>
 
