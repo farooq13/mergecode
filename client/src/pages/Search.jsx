@@ -17,63 +17,7 @@ export function Search() {
   const [showFilters, setShowFilters] = useState(false);
   const { isDark } = useTheme();
 
-  // SAMPLE REVIEWS DATA (fallback)
-  const defaultReviews = [
-    {
-      id: '1',
-      title: 'Refactor authentication middleware',
-      author: 'Faruk Idris',
-      status: 'pending',
-      language: 'TypeScript',
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-      commentCount: 3,
-    },
-    {
-      id: '2',
-      title: 'Add user profile API endpoints',
-      author: 'Adam Muhammad',
-      status: 'approved',
-      language: 'Python',
-      createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
-      commentCount: 7,
-    },
-    {
-      id: '3',
-      title: 'Fix responsive layout issues on mobile',
-      author: 'Emily Rodriguez',
-      status: 'changes-requested',
-      language: 'JavaScript',
-      createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-      commentCount: 12,
-    },
-    {
-      id: '4',
-      title: 'Optimize database queries for dashboard',
-      author: 'Kabeer Ahmad',
-      status: 'merged',
-      language: 'Go',
-      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-      commentCount: 5,
-    },
-    {
-      id: '5',
-      title: 'Implement Redis caching layer',
-      author: 'Sarah Chen',
-      status: 'approved',
-      language: 'Go',
-      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-      commentCount: 8,
-    },
-    {
-      id: '6',
-      title: 'Add unit tests for authentication',
-      author: 'Mike Johnson',
-      status: 'pending',
-      language: 'TypeScript',
-      createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000),
-      commentCount: 2,
-    },
-  ];
+
 
   // Initialize allReviews from localStorage if present, otherwise use defaults and persist them
   const [allReviews, setAllReviews] = useState(() => {

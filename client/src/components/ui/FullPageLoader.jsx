@@ -8,9 +8,6 @@ export default function FullPageLoader() {
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center ${isDark ? 'bg-black/70' : 'bg-white/70'}`}>
       <div className="flex flex-col items-center gap-4">
-        <div className={`flex items-center justify-center w-20 h-20 rounded-lg ${isDark ? 'bg-[#111827]' : 'bg-gray-100'}`}>
-          <Code size={36} className={`${isDark ? 'text-white' : 'text-[#121212]'}`} />
-        </div>
         <div className="flex items-center gap-2">
           <div className="text-lg font-mono text-gray-500">&lt;/&gt;</div>
           <img src="/mergecode-logo.png" alt="mergecode" className="w-28 h-auto" />
