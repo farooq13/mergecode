@@ -48,8 +48,8 @@ function AppContent() {
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/search' element={<Search />} />
         <Route path='/settings' element={<Settings />} />
-        <Route path='signup' element={<Signup />} />
-        <Route path='login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
       {isLoading && <FullPageLoader />}
     </div>

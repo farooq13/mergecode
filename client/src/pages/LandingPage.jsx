@@ -39,6 +39,16 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* FOOTER */}
+      <footer className={` py-12 text-gray-300 ${isDark ? 'bg-[#121212]' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="pt-8 border-t border-gray-800 flex  justify-center items-center">
+            <p className="text-sm text-center">© 2025 mergecode. All rights reserved.</p>
+            
+          </div>
+        </div>
+      </footer>
+
       {/* Add animations */}
       <style jsx>{`
         @keyframes float {

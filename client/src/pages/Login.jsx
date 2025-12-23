@@ -89,35 +89,7 @@ export default function Login() {
             </p>
           </div>
 
-          {/* Social Auth Buttons */}
-          <div className="space-y-3 mb-6">
-            <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-50'}`}>
-              <Github size={20} className={`${isDark ? 'text-white' : ''}`} />
-              <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                Continue with GitHub
-              </span>
-            </button>
-            <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-50'}`}>
-              <Mail size={20} className={`${isDark ? 'text-white' : ''}`} />
-              <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                Continue with Google
-              </span>
-            </button>
-          </div>
-
-          {/* Divider */}
-          <div className="relative mb-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className={`px-2  ${isDark ? 'bg-[#121212] text-gray-400' : 'bg-white text-gray-500'}`}>
-                Or continue with email
-              </span>
-            </div>
-          </div>
-
-          {/* Login Form */}
+           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Email */}
@@ -137,12 +109,7 @@ export default function Login() {
                 <label className={`block text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                   Password <span className="text-red-500">*</span>
                 </label>
-                <Link
-                  to="/forgot-password"
-                  className={`text-sm hover:underline ${isDark ? 'text-blue-400' : 'text-blue-600'}`}
-                >
-                  Forgot password?
-                </Link>
+               
               </div>
               <div className="relative">
                 <input
@@ -165,7 +132,7 @@ export default function Login() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={20} className="cursor-pointer" /> : <Eye size={20} className="cursor-pointer" />}
                 </button>
               </div>
               {errors.password && (
@@ -176,8 +143,9 @@ export default function Login() {
             </div>
 
             {/* Remember Me */}
-            <div className="flex items-center">
-              <input
+            <div className="flex items-center justify-between">
+             <div>
+               <input
                 type="checkbox"
                 id="remember"
                 checked={formData.remember}
@@ -187,6 +155,14 @@ export default function Login() {
               <label htmlFor="remember" className={`ml-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                 Remember me for 30 days
               </label>
+             </div>
+
+               <Link
+                  to="/forgot-password"
+                  className={`text-sm hover:underline ${isDark ? 'text-blue-400' : 'text-blue-600'}`}
+                >
+                  Forgot password?
+                </Link>
             </div>
 
             {/* Submit Button */}
@@ -199,6 +175,35 @@ export default function Login() {
               Sign In
             </Button>
           </form>
+
+          {/* Divider */}
+          <div className="relative mb-6 mt-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className={`px-2  ${isDark ? 'bg-[#121212] text-gray-400' : 'bg-white text-gray-500'}`}>
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+         {/* Social Auth Buttons */}
+          <div className="space-y-3 mb-2">
+            <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-50'}`}>
+              <Github size={20} className={`${isDark ? 'text-white' : ''}`} />
+              <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                Continue with GitHub
+              </span>
+            </button>
+            <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-50'}`}>
+              <Mail size={20} className={`${isDark ? 'text-white' : ''}`} />
+              <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                Continue with Google
+              </span>
+            </button>
+          </div>
+
         </div>
 
         {/* Sign Up Link */}
