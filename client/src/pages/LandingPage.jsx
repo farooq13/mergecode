@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { useTheme } from '../context/ThemeContext';
-
+import FileUpload from '../components/ui/FileUpload';
 
 export default function LandingPage() {
   const { isDark } = useTheme();
@@ -25,6 +25,8 @@ export default function LandingPage() {
               <p className="text-xl opacity-90 text-center">
                  Join 10,000+ developers who are writing better code every day
                </p>
+
+              
               {/* CTA Buttons */}
               <div className='flex justify-center items-center mt-12'>
                 <Link to="/signup">
@@ -34,6 +36,7 @@ export default function LandingPage() {
                 </Link>
               </div>
               
+               <FileUpload />
             </div>
           </div>
         </div>
