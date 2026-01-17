@@ -17,63 +17,7 @@ export function Search() {
   const [showFilters, setShowFilters] = useState(false);
   const { isDark } = useTheme();
 
-  // SAMPLE REVIEWS DATA (fallback)
-  const defaultReviews = [
-    {
-      id: '1',
-      title: 'Refactor authentication middleware',
-      author: 'Faruk Idris',
-      status: 'pending',
-      language: 'TypeScript',
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-      commentCount: 3,
-    },
-    {
-      id: '2',
-      title: 'Add user profile API endpoints',
-      author: 'Adam Muhammad',
-      status: 'approved',
-      language: 'Python',
-      createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
-      commentCount: 7,
-    },
-    {
-      id: '3',
-      title: 'Fix responsive layout issues on mobile',
-      author: 'Emily Rodriguez',
-      status: 'changes-requested',
-      language: 'JavaScript',
-      createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-      commentCount: 12,
-    },
-    {
-      id: '4',
-      title: 'Optimize database queries for dashboard',
-      author: 'Kabeer Ahmad',
-      status: 'merged',
-      language: 'Go',
-      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-      commentCount: 5,
-    },
-    {
-      id: '5',
-      title: 'Implement Redis caching layer',
-      author: 'Sarah Chen',
-      status: 'approved',
-      language: 'Go',
-      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-      commentCount: 8,
-    },
-    {
-      id: '6',
-      title: 'Add unit tests for authentication',
-      author: 'Mike Johnson',
-      status: 'pending',
-      language: 'TypeScript',
-      createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000),
-      commentCount: 2,
-    },
-  ];
+
 
   // Initialize allReviews from localStorage if present, otherwise use defaults and persist them
   const [allReviews, setAllReviews] = useState(() => {
@@ -136,17 +80,7 @@ export function Search() {
 
   return (
     <div className={`min-h-screen pb-12 ${isDark ? 'dark:bg-[#121212]' : 'bg-gray-50'}`}>
-      {/* Header */}
-      <div className={` border-b ${isDark ? 'bg-[#1e1e1e] border-[#2a2a2a]' : 'bg-white border-gray-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Search Reviews
-          </h1>
-          <p className={`mt-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Find reviews by title, author, language, or status
-          </p>
-        </div>
-      </div>
+   
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">

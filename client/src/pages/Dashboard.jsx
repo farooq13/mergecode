@@ -1,4 +1,4 @@
-import { FileCode, CheckCircle, Clock, Users, Plus } from 'lucide-react';
+import { FileCode, CheckCircle, Clock, Users, Plus, Link } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -7,7 +7,7 @@ import ReviewCard from '../components/features/ReviewCard';
 import SubmissionForm from '../components/features/SubmissionForm';
 import Button from '../components/ui/Button';
 
-// Helper functions for localStorage (same as Reviews page)
+// Helper functions for localStorage
 const STORAGE_KEY = 'mergecode_reviews';
 
 const getStoredReviews = () => {
@@ -183,8 +183,8 @@ export default function Dashboard() {
             <h2 className={`${isDark ? 'text-2xl font-bold text-white' : 'text-2xl font-bold text-gray-900' }`}>
               Recent Submissions
             </h2>
-            <button className="text-sm text-primary-600 dark:text-primary-400 hover:cursor-pointer hover:text-primary-700 dark:hover:text-primary-300 font-medium">
-              View All →
+            <button className={`text-sm hover:cursor-pointer font-medium ${isDark ? 'hover:text-[#3b82f6] text-[#5f99f5]' : 'text-[#2563eb] hover:text-[#1d4ed8]'}`}>
+              <a href="/reviews">View All →</a>
             </button>
           </div>
 

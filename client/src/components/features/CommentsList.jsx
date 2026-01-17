@@ -12,23 +12,23 @@ export default function CommentsList({ reviewId, currentUser = 'You' }) {
   const [comments, setComments] = useState([
     {
       id: '1',
-      author: 'Mike Johnson',
+      author: 'Adam Muhammad',
       text: 'Great refactoring! The code is much more readable now. However, I have a question about the error handling - should we log these errors to our monitoring service?',
       createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
       resolved: false,
       reactions: {
-        '👍': ['Sarah Chen', 'David Kim'],
-        '❤️': ['Emily Rodriguez'],
+        '👍': ['Faruk Idris', 'David Kim'],
+        '❤️': ['Muhammad Kabeer'],
       },
       replies: [
         {
           id: '2',
-          author: 'Sarah Chen',
+          author: 'Faruk Idris',
           text: 'Good point! Yes, we should definitely add logging here.',
           createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
           resolved: false,
           reactions: {
-            '👍': ['Mike Johnson'],
+            '👍': ['Muhammad Kabeer'],
           },
           replies: [],
         },
@@ -36,12 +36,12 @@ export default function CommentsList({ reviewId, currentUser = 'You' }) {
     },
     {
       id: '3',
-      author: 'David Kim',
+      author: 'Muhammad Kabeer',
       text: 'The token validation looks solid. Nice work!',
       createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000),
       resolved: true,
       reactions: {
-        '👍': ['Sarah Chen', 'Mike Johnson', 'Emily Rodriguez'],
+        '👍': ['Adam Muhammad', 'David Kim', 'Faruk Idris'],
       },
       replies: [],
     },
@@ -130,10 +130,7 @@ export default function CommentsList({ reviewId, currentUser = 'You' }) {
     setComments(prev => toggleResolveInComments(prev));
   };
 
-  /*
-    DELETE COMMENT
-    Removes a comment and all its replies
-   */
+  // Delete Comment
   const handleDelete = (commentId) => {
     const deleteFromComments = (comments) => {
       return comments
@@ -201,7 +198,7 @@ export default function CommentsList({ reviewId, currentUser = 'You' }) {
   const unresolvedCount = totalComments - resolvedCount;
 
   return (
-    <div className="bg-white dark:bg-dark-card rounded-lg border border-gray-200 dark:border-dark-border">
+    <div className={`rounded-lg border ${isDark ? ' bg-[#1e1e1e] border-[#2a2a2a]' : 'bg-white border-gray-200'}`}>
       {/* Header */}
       <div className="p-6 border-b border-gray-200 dark:border-dark-border">
         <div className="flex items-center justify-between mb-4">

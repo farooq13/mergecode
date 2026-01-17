@@ -77,7 +77,7 @@ export default function FormInput({
     <div className="w-full">
       {/* Label */}
       {label && (
-        <label className={`block text-sm font-medium mb-1.5 ${labelClassName || 'text-gray-700 dark:text-gray-300'}`}>
+        <label className={`block text-sm font-medium mb-1.5 ${labelClassName || `${isDark ? 'text-gray-300' : 'text-gray-700'}`}`}>
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>

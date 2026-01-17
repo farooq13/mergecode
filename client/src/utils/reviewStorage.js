@@ -12,7 +12,7 @@ export function getStoredReviews() {
       }));
     }
   } catch (error) {
-    // Notify user instead of logging
+    // Notify user 
     try {
       const { notify } = require('./notify');
       notify('error', 'Failed to read stored reviews.');
