@@ -80,17 +80,7 @@ export function Search() {
 
   return (
     <div className={`min-h-screen pb-12 ${isDark ? 'dark:bg-[#121212]' : 'bg-gray-50'}`}>
-      {/* Header */}
-      <div className={` border-b ${isDark ? 'bg-[#1e1e1e] border-[#2a2a2a]' : 'bg-white border-gray-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Search Reviews
-          </h1>
-          <p className={`mt-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Find reviews by title, author, language, or status
-          </p>
-        </div>
-      </div>
+   
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
