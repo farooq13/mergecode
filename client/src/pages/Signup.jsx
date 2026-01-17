@@ -184,7 +184,7 @@ export default function Signup() {
   
    return (
     <div className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${isDark ? 'bg-[#121212]'  : 'bg-gray-50'}`}>
-      <div className="w-full max-w-4xl">
+      <div className="w-full min-w-md max-w-lg">
         
         
         {/* Multi-Step Form */}
@@ -200,34 +200,6 @@ export default function Signup() {
                 <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   Start with your email and password
                 </p>
-              </div>
-
-              {/* Social Auth Buttons */}
-              <div className="space-y-3">
-                <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border  rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'hover:bg-gray-700 border-gray-300' : 'hover:bg-gray-50 border-[#2a2a2a]'}`}>
-                  <Github size={20} className={`${isDark ? 'text-white' : ''}`} />
-                  <span className="font-medium text-gray-700 dark:text-gray-300">
-                    Continue with GitHub
-                  </span>
-                </button>
-                <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border  rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'hover:bg-gray-700 border-gray-300' : 'hover:bg-gray-50 border-[#2a2a2a]'}`}>
-                  <Mail size={20} className={`${isDark ? 'text-white' : ''}`} />
-                  <span className="font-medium text-gray-700 dark:text-gray-300">
-                    Continue with Google
-                  </span>
-                </button>
-              </div>
-
-              {/* Divider */}
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className={`px-2 ${isDark ? 'bg-[#121212] text-gray-400' : 'bg-white text-gray-500'}`}>
-                    Or continue with email
-                  </span>
-                </div>
               </div>
 
               {/* Email */}
@@ -321,6 +293,34 @@ export default function Signup() {
                   Privacy Policy
                 </a>
               </p>
+
+                {/* Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`}></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className={`px-2 ${isDark ? 'bg-[#121212] text-gray-400' : 'bg-white text-gray-500'}`}>
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+               {/* Social Auth Buttons */}
+              <div className="space-y-3">
+                <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border  rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'hover:bg-gray-700 border-gray-300' : 'hover:bg-gray-50 border-[#2a2a2a]'}`}>
+                  <Github size={20} className={`${isDark ? 'text-white' : ''}`} />
+                  <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Continue with GitHub
+                  </span>
+                </button>
+                <button className={`w-full flex items-center justify-center gap-3 px-4 py-3 border  rounded-lg transition-colors hover:cursor-pointer ${isDark ? 'hover:bg-gray-700 border-gray-300' : 'hover:bg-gray-50 border-[#2a2a2a]'}`}>
+                  <Mail size={20} className={`${isDark ? 'text-white' : ''}`} />
+                  <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Continue with Google
+                  </span>
+                </button>
+              </div>
             </div>
           )}
 
